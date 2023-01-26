@@ -1,14 +1,12 @@
-import { Client } from "discord.js";
+import { ActivityType, Client } from "discord.js";
 import { BotEvent } from "../types";
-import { color } from "../functions";
-
+import logger from "../utils/winston";
 const event : BotEvent = {
     name: "ready",
     once: true,
     execute: (client : Client) => {
-        console.log(
-            color("text", `💪 Logged in as ${color("variable", client.user?.tag)}`)
-        )
+        logger.info(`Logged in as ${client.user?.tag}!`)
+        client.user?.setActivity("for your commands! | /help", {type: ActivityType.Watching})
     }
 }
 
